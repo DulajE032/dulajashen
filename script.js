@@ -16,6 +16,39 @@ document.addEventListener('mouseleave', () => {
 // 2. Active Link Switching on Scroll
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-menu a');
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+
+const closeMobileMenu = () => {
+    if (!mobileMenuToggle) return;
+    document.body.classList.remove('menu-open');
+    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+};
+
+if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', () => {
+        const isOpen = document.body.classList.toggle('menu-open');
+        mobileMenuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 900) {
+                closeMobileMenu();
+            }
+        });
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 900) {
+            closeMobileMenu();
+        }
+    });
+}
 
 window.addEventListener('scroll', () => {
     let current = '';

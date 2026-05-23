@@ -15,6 +15,11 @@
     <div class="cosmos-canvas"></div>
     <div class="gridlines"></div>
     <div class="cursor-glass" id="cursor"></div>
+    <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        <i class="fas fa-bars"></i>
+         <span class="sr-only">Toggle navigation menu</span>
+    </button>
+    <div class="mobile-menu-overlay" aria-hidden="true"></div>
 
     <div class="app-container">
 
@@ -34,7 +39,7 @@
                     </a>
                 </div>
 
-                <nav class="nav-menu">
+                <nav class="nav-menu" id="primary-nav">
                     <a href="#about" class="cat-btn active">
                         <i class="fas fa-user"></i> About
                     </a>
